@@ -10,30 +10,24 @@ set(CMAKE_CXX_STANDARD  14)
 set(CMAKE_CXX_STANDARD_REQUIRED  ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS  ON)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -w -Wall   -O3")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -Wall   -O3")
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
-
-LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
 find_package(OpenCV REQUIRED)
 message("OpenCV VIRSION = ${OpenCV_VERSION}")
 message("OpenCV INCLUDE = ${OpenCV_INCLUDE_DIRS}")
 
-
 find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(fmt REQUIRED)
 
+
+
 include_directories(
         ${OpenCV_INCLUDE_DIRS}
-${PROJECT_SOURCE_DIR}
-${PROJECT_SOURCE_DIR}/include
-# ${PROJECT_SOURCE_DIR}/include/CameraModels
-${PROJECT_SOURCE_DIR}/Thirdparty/Sophus
-${EIGEN3_INCLUDE_DIR}
-${Pangolin_INCLUDE_DIRS}
+        ${PROJECT_SOURCE_DIR}
+        ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/Thirdparty/Sophus
+        ${EIGEN3_INCLUDE_DIR}
+        ${Pangolin_INCLUDE_DIRS}
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -59,8 +53,11 @@ boost_serialization
 crypto
 fmt::fmt
 glog gflags
+pthread
 )
 
 target_link_libraries(${PROJECT_NAME}
 ${LIBRARIES}
+
 )
+
